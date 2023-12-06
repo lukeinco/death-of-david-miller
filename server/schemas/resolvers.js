@@ -1,28 +1,28 @@
-const { Thought } = require('../models');
+const { Post } = require('../models');
 
 const resolvers = {
   Query: {
-    thoughts: async () => {
-      return Thought.find().sort({ createdAt: -1 });
+    posts: async () => {
+      return Post.find().sort({ createdAt: -1 });
     },
 
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+    post: async (parent, { postId }) => {
+      return Post.findOne({ _id: postId });
     },
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
+    addUser: async (parent, { username, password }) => {
       // First we create the user
-      const user = await User.create({ username, email, password });
+      const user = await User.create({ username, password });
       // To reduce friction for the user, we immediately sign a JSON Web Token and log the user in after they are created
       const token = signToken(user);
       // Return an `Auth` object that consists of the signed token and user's information
       return { token, user };
     },
-    login: async (parent, { email, password }) => {
+    login: async (parent, { username, password }) => {
       // Look up the user by the provided email address. Since the `email` field is unique, we know that only one person will exist with that email
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ username });
 
       // If there is no user with that email address, return an Authentication error stating so
       if (!user) {
@@ -43,19 +43,19 @@ const resolvers = {
       // Return an `Auth` object that consists of the signed token and user's information
       return { token, user };
     },
-    addThought: async (parent, { thoughtText, thoughtAuthor }) => {
-      const thought = await Thought.create({ thoughtText, thoughtAuthor });
+    addPost: async (parent, { postText, postAuthor }) => {
+      const post = await Post.create({ postText, postAuthor });
 
       await User.findOneAndUpdate(
-        { username: thoughtAuthor },
-        { $addToSet: { thoughts: thought._id } }
+        { username: postAuthor },
+        { $addToSet: { posts: post._id } }
       );
 
-      return thought;
+      return post;
     },
-    addComment: async (parent, { thoughtId, commentText, commentAuthor }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
+    addComment: async (parent, { postId, commentText, commentAuthor }) => {
+      return Post.findOneAndUpdate(
+        { _id: postId },
         {
           $addToSet: { comments: { commentText, commentAuthor } },
         },
@@ -65,12 +65,12 @@ const resolvers = {
         }
       );
     },
-    removeThought: async (parent, { thoughtId }) => {
-      return Thought.findOneAndDelete({ _id: thoughtId });
+    removePost: async (parent, { postId }) => {
+      return Post.findOneAndDelete({ _id: postId });
     },
-    removeComment: async (parent, { thoughtId, commentId }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
+    removeComment: async (parent, { postId, commentId }) => {
+      return Post.findOneAndUpdate(
+        { _id: postId },
         { $pull: { comments: { _id: commentId } } },
         { new: true }
       );

@@ -1,8 +1,8 @@
 const typeDefs = `
-  type Thought {
+  type Post {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
+    postText: String
+    postAuthor: String
     createdAt: String
     comments: [Comment]!
   }
@@ -14,15 +14,15 @@ const typeDefs = `
   }
 
   type Query {
-    thoughts: [Thought]!
-    thought(thoughtId: ID!): Thought
+    posts: [Post]!
+    post(postId: ID!): Post
   }
 
   type Mutation {
-    addThought(thoughtText: String!, thoughtAuthor: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addPost(postText: String!, postAuthor: String!): Post
+    addComment(postId: ID!, commentText: String!): Post
+    removePost(postId: ID!): Post
+    removeComment(postId: ID!, commentId: ID!): Post
   }
 `;
 
