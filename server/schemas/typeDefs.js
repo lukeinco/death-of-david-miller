@@ -7,6 +7,11 @@ const typeDefs = `
     comments: [Comment]!
   }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Comment {
     _id: ID
     commentText: String
@@ -19,6 +24,8 @@ const typeDefs = `
   }
 
   type Mutation {
+    addUser(name: String!, password: String!): Auth
+    login(name: String!, password: String!): Auth
     addPost(postText: String!, postAuthor: String!): Post
     addComment(postId: ID!, commentText: String!): Post
     removePost(postId: ID!): Post
