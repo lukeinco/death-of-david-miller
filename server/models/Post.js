@@ -33,6 +33,15 @@ const postSchema = new Schema({
   ],
 });
 
+// GPT Below:
+// const postSchema = new Schema({
+//  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+//  postText: { type: String, required: true },
+//  dateCreated: { type: Date, default: Date.now },
+//  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
+// });
+
+
 const Post = model('Post', postSchema);
 
 module.exports = Post;
