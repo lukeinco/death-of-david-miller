@@ -27,11 +27,22 @@ userSchema.pre('save', async function (next) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
+  //GPT Below:
+  //userSchema.pre('save', async function (next) {
+ // try {
+   // const salt = await bcrypt.genSalt(10);
+   // const hashedPassword = await bcrypt.hash(this.password, salt);
+   // this.password = hashedPassword;
+   // next();
+ // } catch (error) {
+   // next(error);
+ // }
+//});
 
   next();
 });
 
-// compare the incoming password with the hashed password
+// compare the incoming password with the hashed password this is not in gpt. ask why
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
