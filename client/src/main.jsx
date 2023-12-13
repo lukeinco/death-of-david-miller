@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import App from './App.jsx'
 import Home from './pages/Home'
+import Play from './pages/Play.jsx'
+import Login from './pages/Login.jsx'
 
 import Error from './pages/Error'
 
@@ -15,6 +17,14 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: '/play',
+        element: <Play />
+      },
+      {
+        path: '/login',
+        element: <Login />
       }
     ],
   },

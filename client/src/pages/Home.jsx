@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 
-// import ThoughtList from '../components/ThoughtList';
-// import ThoughtForm from '../components/ThoughtForm';
+import PostList from '../components/PostList';
+import PostForm from '../components/PostForm';
 
 import { QUERY_POSTS } from '../utils/queries';
 
@@ -10,9 +10,20 @@ const Home = () => {
   const posts = data?.posts || [];
 
   return (
-    <p>
-hello Im Johnny Cash
-    </p>
+    <main>
+      <div className='post-form'>
+        <PostForm />
+      </div>
+      <div className='posts'>
+        {loading ? (
+          <div>Loading Posts . . . </div>
+        ) : (
+          <PostList
+            posts={posts}
+          />
+        )}
+      </div>
+    </main>
   );
 };
 

@@ -1,3 +1,62 @@
 body {
-    background-color: ;
+    background-color: #143741;
+    color: #54FFFF;
+    margin-top: 15%;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #143741;
+    width: 100%;
+}
+
+.left {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+
+.title-text {
+    color: #54FFFF;
+}
+
+.title {
+    color: inherit;
+    text-decoration: none;
+}
+
+.html {
+    color: inherit;
+    text-decoration: none;
+    margin-left: 20%;
+}
+
+.text {
+    margin-top: 150px;
+    font-size: 100px;
+}
+
+.login {
+ position: fixed;
+ top: 0;
+ right: 0;
+}
+
+#login {
+    padding: 30px;
+}
+
+.login-body {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.login-form {
+    flex-direction: column;
+    padding-right: 10%;
 }

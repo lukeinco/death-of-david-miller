@@ -1,4 +1,5 @@
-const { Post } = require('../models');
+const { Post, User } = require('../models');
+const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -6,9 +7,13 @@ const resolvers = {
       return Post.find().sort({ createdAt: -1 });
     },
 
-    post: async (parent, { postId }) => {
-      return Post.findOne({ _id: postId });
-    },
+    users: async () => {
+      return User.find().sort({ createdAt: -1 });
+    }
+
+    // post: async (parent, { postId }) => {
+    //   return Post.findOne({ _id: postId });
+    // },
   },
 
   Mutation: {
