@@ -20,9 +20,9 @@ const PostForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(JSON.stringify(formState));
     try {
-      const { data } = await addPost({
+      await addPost({
         variables: { ...formState },
       });
 

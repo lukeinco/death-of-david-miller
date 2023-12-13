@@ -5,7 +5,6 @@ const postSchema = new Schema({
     type: String,
     required: 'Please enter a post!',
     minlength: 1,
-    maxlength: 280,
     trim: true,
   },
   postAuthor: {

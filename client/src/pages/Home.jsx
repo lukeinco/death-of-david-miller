@@ -20,6 +20,7 @@ const Home = () => {
         ) : (
           <PostList
             posts={posts}
+            title='Notes'
           />
         )}
       </div>

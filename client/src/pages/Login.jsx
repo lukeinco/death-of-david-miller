@@ -9,6 +9,7 @@ import Auth from '../utils/auth';
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ username: '', password: '' });
+  const [signupFormState, setSignupFormState] = useState({ username: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
   const [addUser, { signupError, signupData }] = useMutation(ADD_USER);
 
@@ -18,6 +19,14 @@ const Login = (props) => {
     const { name, value } = event.target;
     setFormState({
       ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleSignupChange = (event) => {
+    const { name, value } = event.target;
+    setSignupFormState({
+      ...signupFormState,
       [name]: value,
     });
   };
@@ -44,14 +53,14 @@ const Login = (props) => {
   };
   const signupHandleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
+    console.log(signupFormState);
 
     try {
       const { signupData } = await addUser({
-        variables: { ...formState },
+        variables: { ...signupFormState },
       });
-
-      Auth.login(data.addUser.token);
+console.log(JSON.stringify(signupData));
+      Auth.login(signupData.addUser.token);
     } catch (e) {
       console.error(e);
     }
@@ -99,16 +108,16 @@ const Login = (props) => {
                 placeholder="Your username"
                 name="username"
                 type="text"
-                value={formState.name}
-                onChange={handleChange}
+                value={signupFormState.name}
+                onChange={handleSignupChange}
               />
               <input
                 className="form"
                 placeholder="******"
                 name="password"
                 type="password"
-                value={formState.password}
-                onChange={handleChange}
+                value={signupFormState.password}
+                onChange={handleSignupChange}
               />
               <button
                 className="form"

@@ -30,14 +30,14 @@ export const ADD_POST = gql`
       _id
       postText
       postAuthor
-      createdAt
+      dateCreated
       comments {
         _id
         commentText
       }
     }
   }
-`;
+  `;
 
 export const ADD_COMMENT = gql`
   mutation addComment($postId: ID!, $commentText: String!) {

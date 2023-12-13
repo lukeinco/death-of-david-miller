@@ -13,7 +13,7 @@ type Auth {
 
 type Post {
   _id: ID!
-  userId: ID
+  postAuthor: String!
   postText: String!
   dateCreated: String
   comments: [Comment]
@@ -21,10 +21,10 @@ type Post {
 
 type Comment {
   _id: ID!
-  userId: ID!
+  postAuthor: String!
   postId: ID!
   commentText: String!
-  date: String!
+  date: String
 }
 
 type Query {
@@ -35,7 +35,7 @@ type Query {
 type Mutation {
   addUser(username: String!, password: String!): Auth
   login(username: String!, password: String!): Auth
-  addPost(postText: String!): Post
+  addPost(postText: String!, postAuthor: String!): Post
   removePost(postId: ID!): Post
   addComment(postId: ID!, commentText: String!): Comment
   removeComment(commentId: ID!): Comment

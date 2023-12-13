@@ -8,14 +8,13 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #143741;
+    background-color: #18414d;
     width: 100%;
 }
 
 .left {
     display: flex;
     flex-direction: row;
-    margin-bottom: 30px;
 }
 
 .title-text {
@@ -34,8 +33,13 @@ header {
 }
 
 .text {
-    margin-top: 150px;
-    font-size: 100px;
+font-family: monospace;
+color: #143741;
+}
+
+.text ::selection{
+    color: red;
+    background: red;
 }
 
 .login {
@@ -46,6 +50,8 @@ header {
 
 #login {
     padding: 30px;
+    background-color: #18414d;
+    color: #54FFFF;
 }
 
 .login-body {

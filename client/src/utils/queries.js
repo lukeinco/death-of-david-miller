@@ -13,7 +13,7 @@ export const QUERY_POSTS = gql`
 
 export const QUERY_SINGLE_POST = gql`
   query getSinglePost($postId: ID!) {
-    thought(thoughtId: $postId) {
+    post(postId: $postId) {
       _id
       postText
       postAuthor
