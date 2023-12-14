@@ -10,6 +10,7 @@ const PostForm = () => {
   const [formState, setFormState] = useState({
     postText: '',
     postAuthor: user.authenticatedPerson.username,
+    image: '',
   });
   const [characterCount, setCharacterCount] = useState(0);
 
@@ -32,6 +33,7 @@ const PostForm = () => {
       setFormState({
         postText: '',
         postAuthor: user.authenticatedPerson.username,
+        image: '',
       });
     } catch (err) {
       console.error(err);
@@ -60,19 +62,10 @@ const PostForm = () => {
             name="postText"
             placeholder="Enter text ..."
             value={formState.postText}
-            style={{ lineHeight: '1.5' }}
             onChange={handleChange}
+            rows="10" cols="80"
           ></textarea>
         </div>
-        {/* <div>
-          <input
-            name="postAuthor"
-            placeholder="Name"
-            value={formState.postAuthor}
-            onChange={handleChange}
-          />
-        </div> */}
-
         <div>
           <button type="submit">
             Post

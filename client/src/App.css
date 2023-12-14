@@ -68,11 +68,20 @@ color: #143741;
 }
 
 textarea {
-    background-color: #18414d
+    background-color: #5f848fe5;
+    /* padding: 4px 300px 150px 4px; */
+    color: rgb(247, 236, 236);
+    border-radius: 2%;
+    margin-bottom: 2%;
+    cursor: grab;
+}
+textarea :active {
+    cursor: grabbing;
 }
 
 input {
-    background-color: #18414d;
+    background-color: #5f848fe5;
+    color: rgb(247, 236, 236);
 }
 
 .post-text {
@@ -87,3 +96,14 @@ display: block;
 #plz{
     background-color: grey;
 }
+
+::placeholder {
+    color: rgb(247, 236, 236);
+}
+
+img {
+    border-radius: 2%;
+    padding: 0 0 20px 20px;
+    background-color: #2A2827;
+}
+

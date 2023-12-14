@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
-const commentSchema = require("./comment.js")
+const commentSchema = require("./comment.js");
+
 const postSchema = new Schema({
   postText: {
     type: String,
@@ -16,18 +17,12 @@ const postSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  image: {
+    type: String,
+  },
   comments: [commentSchema ],
 });
 
-// GPT Below:
-//const commentSchema = require('./comment.model');
-
-// const postSchema = new Schema({
-//  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-//  postText: { type: String, required: true },
-//  dateCreated: { type: Date, default: Date.now },
-//  comments: [commentSchema],
-// });
 
 const Post = model('Post', postSchema);
 

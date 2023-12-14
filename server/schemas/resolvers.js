@@ -62,6 +62,20 @@ const resolvers = {
 
       return post;
     },
+    addImage: async (parent, { postId, image }) => {
+      try {
+        const updatedPost = await Post.findByIdAndUpdate(
+          { _id: postId },
+          { $set: { image: image } },
+          { new: true }
+        );
+
+        return updatedPost;
+      } catch (error) {
+        console.error(error);
+        throw new Error('Failed to add image to post.');
+      }
+    },
     addComment: async (parent, { postId, commentText, commentAuthor }) => {
       console.log('Received parameters:', { postId, commentText, commentAuthor });
     

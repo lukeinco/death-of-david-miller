@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import App from './App.jsx'
-import Home from './pages/Home'
+import Desk from './pages/Desk'
 import Play from './pages/Play.jsx'
 import Login from './pages/Login.jsx'
 
@@ -16,16 +16,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        path: '/',
-        element: <Login />,
+        element: <Desk />,
       },
       {
         path: '/play',
         element: <Play />
       },
       {
-        path: '/desk',
-        element: <Home />
+        path: '/login',
+        element: <Login />
       }
     ],
   },

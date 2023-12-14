@@ -1,21 +1,23 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_POSTS = gql`
-query Query {
+query getPosts {
   posts {
+    image
     _id
-    dateCreated
     postAuthor
     postText
+    dateCreated
     comments {
       _id
-      commentAuthor
       commentText
+      commentAuthor
       date
     }
   }
 }
 `;
+
 
 
 export const QUERY_SINGLE_POST = gql`

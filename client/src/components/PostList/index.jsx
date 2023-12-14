@@ -2,7 +2,7 @@ import CommentList from '../CommentList'
 import CommentForm from '../CommentForm'
 
 const PostList = ({ posts, title }) => {
-
+const imageurl = posts.image
   return (
     <div>
       <h2>{title}</h2>
@@ -16,6 +16,10 @@ const PostList = ({ posts, title }) => {
             <div className='post-text'>
               <p>{post.postText}</p>
             </div>
+            {post.image && (
+  <img src={`../../../dist/images/${post.image}`} alt="Post Image" />
+)}
+
             <CommentList comments={post.comments} />
             <CommentForm postId={post._id} />
           </div>
