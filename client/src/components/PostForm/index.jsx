@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import Auth from '../../utils/auth'
 
 import { ADD_POST } from '../../utils/mutations';
 import { QUERY_POSTS } from '../../utils/queries';
+const user = Auth.getProfile();
 
 const PostForm = () => {
   const [formState, setFormState] = useState({
     postText: '',
-    postAuthor: '',
+    postAuthor: user.authenticatedPerson.username,
   });
   const [characterCount, setCharacterCount] = useState(0);
 
@@ -17,6 +19,7 @@ const PostForm = () => {
       'getPosts'
     ]
   });
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -28,7 +31,7 @@ const PostForm = () => {
 
       setFormState({
         postText: '',
-        postAuthor: '',
+        postAuthor: user.authenticatedPerson.username,
       });
     } catch (err) {
       console.error(err);
@@ -38,7 +41,7 @@ const PostForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'postText' && value.length <= 280) {
+    if (name === 'postText') {
       setFormState({ ...formState, [name]: value });
       setCharacterCount(value.length);
     } else if (name !== 'postText') {
@@ -50,35 +53,33 @@ const PostForm = () => {
     <div>
 
       <form
-        className="flex-row justify-center justify-space-between-md align-center"
         onSubmit={handleFormSubmit}
       >
-        <div className="col-12">
+        <div>
           <textarea
             name="postText"
             placeholder="Enter text ..."
             value={formState.postText}
-            className="form-input w-100"
             style={{ lineHeight: '1.5' }}
             onChange={handleChange}
           ></textarea>
         </div>
-        <div className="col-12 col-lg-9">
+        {/* <div>
           <input
             name="postAuthor"
             placeholder="Name"
             value={formState.postAuthor}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
 
-        <div className="col-12 col-lg-3">
-          <button className="btn btn-primary btn-block py-3" type="submit">
+        <div>
+          <button type="submit">
             Post
           </button>
         </div>
         {error && (
-          <div className="col-12 my-3 bg-danger text-white p-3">
+          <div>
             Something went wrong...
           </div>
         )}

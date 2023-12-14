@@ -21,8 +21,7 @@ type Post {
 
 type Comment {
   _id: ID!
-  postAuthor: String!
-  postId: ID!
+  commentAuthor: String
   commentText: String!
   date: String
 }
@@ -37,7 +36,7 @@ type Mutation {
   login(username: String!, password: String!): Auth
   addPost(postText: String!, postAuthor: String!): Post
   removePost(postId: ID!): Post
-  addComment(postId: ID!, commentText: String!): Comment
+  addComment(postId: ID!, commentText: String!, commentAuthor: String): Comment
   removeComment(commentId: ID!): Comment
 }
 `;

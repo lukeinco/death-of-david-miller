@@ -4,16 +4,20 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
   Query: {
     posts: async () => {
-      return Post.find().sort({ createdAt: -1 });
+      try {
+        console.log("++++++++++++++++++++++++++")
+        console.log("Trying to get my posts!")
+        return Post.find().sort({ createdAt: -1 });
+
+      } catch (err){
+        console.log("++++++++++++++++++++++++++")
+        console.log(err)
+      }
     },
 
     users: async () => {
       return User.find().sort({ createdAt: -1 });
     }
-
-    // post: async (parent, { postId }) => {
-    //   return Post.findOne({ _id: postId });
-    // },
   },
 
   Mutation: {
@@ -48,27 +52,37 @@ const resolvers = {
       // Return an `Auth` object that consists of the signed token and user's information
       return { token, user };
     },
-    addPost: async (parent, { postText, postAuthor }) => {
+    addPost: async (parent, { postText, postAuthor }, context) => {
       const post = await Post.create({ postText, postAuthor });
 
       await User.findOneAndUpdate(
-        { username: postAuthor },
+        { _id: context._id },
         { $addToSet: { posts: post._id } }
       );
 
       return post;
     },
     addComment: async (parent, { postId, commentText, commentAuthor }) => {
-      return Post.findOneAndUpdate(
+      console.log('Received parameters:', { postId, commentText, commentAuthor });
+    
+      // Ensure commentAuthor is not null, replace 'UnknownUser' with a default value if needed
+      const safeCommentAuthor = commentAuthor || 'UnknownUser';
+    
+      // Find the post and update the comments
+      const updatedPost = await Post.findOneAndUpdate(
         { _id: postId },
         {
-          $addToSet: { comments: { commentText, commentAuthor } },
+          $addToSet: { comments: { commentText, commentAuthor: safeCommentAuthor } },
         },
         {
           new: true,
           runValidators: true,
         }
       );
+    
+      // Return the updated post
+      console.log('Updated post:', updatedPost);
+      return updatedPost;
     },
     removePost: async (parent, { postId }) => {
       return Post.findOneAndDelete({ _id: postId });

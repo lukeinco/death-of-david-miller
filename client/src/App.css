@@ -1,7 +1,7 @@
 body {
     background-color: #143741;
     color: #54FFFF;
-    margin-top: 15%;
+    margin-top: 8%;
 }
 
 header {
@@ -65,4 +65,25 @@ color: #143741;
 .login-form {
     flex-direction: column;
     padding-right: 10%;
+}
+
+textarea {
+    background-color: #18414d
+}
+
+input {
+    background-color: #18414d;
+}
+
+.post-text {
+/* make lines break */
+display: block;
+}
+
+#italic {
+    font-style: italic;
+}
+
+#plz{
+    background-color: grey;
 }

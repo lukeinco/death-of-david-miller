@@ -1,22 +1,23 @@
+import CommentList from '../CommentList'
+import CommentForm from '../CommentForm'
+
 const PostList = ({ posts, title }) => {
 
   return (
     <div>
-      <h3>{title}</h3>
+      <h2>{title}</h2>
       {posts &&
-        posts.map((post) => (
+        posts.toReversed().map((post) => (
           <div key={post._id}>
             <h4>
               {post.postAuthor} <br />
-              <span>
-                had this post on {post.createdAt}
-              </span>
+              {post.createdAt}
             </h4>
-            <div>
+            <div className='post-text'>
               <p>{post.postText}</p>
             </div>
             <CommentList comments={post.comments} />
-            <CommentForm PostId={post._id} />
+            <CommentForm postId={post._id} />
           </div>
         ))}
     </div>

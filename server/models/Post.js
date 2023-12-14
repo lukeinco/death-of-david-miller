@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-
+const commentSchema = require("./comment.js")
 const postSchema = new Schema({
   postText: {
     type: String,
@@ -16,20 +16,7 @@ const postSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  comments: [
-    {
-      commentText: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 280,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-      },
-    },
-  ],
+  comments: [commentSchema ],
 });
 
 // GPT Below:
