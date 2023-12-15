@@ -59,7 +59,7 @@ const CommentForm = ({ postId }) => {
             value={formState.commentText}
             style={{ lineHeight: '1.5' }}
             onChange={handleChange}
-            rows="10" cols="80"
+            rows="6" cols="40"
             ></textarea>
         </div>
 

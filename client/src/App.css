@@ -1,5 +1,14 @@
+html {
+    height: 100%;
+}
+
 body {
-    background-color: #143741;
+    background-color: #337081;
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: linear-gradient(#143741, #337081);
     color: #54FFFF;
     margin-top: 8%;
 }
@@ -35,11 +44,39 @@ header {
 .text {
 font-family: monospace;
 color: #143741;
+background-color: #143741;
 }
 
-.text ::selection{
+.text::selection{
+    color: #477581;
+    background: #411E14;
+}
+
+#bottom {
+    display: flex;
+    flex-direction: row;
+}
+
+#bible {
+    transform: scale(-1, 1);
+    color: #000080;
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+    max-width: 200px;
+}
+
+#bible:hover {
     color: red;
-    background: red;
+}
+
+#adam {
+    display: block;
+    max-width:500px;
+margin-left: 35%;
+margin-bottom: 50%;
 }
 
 .login {
