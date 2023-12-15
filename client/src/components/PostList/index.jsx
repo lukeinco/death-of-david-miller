@@ -17,7 +17,7 @@ const imageurl = posts.image
               <p>{post.postText}</p>
             </div>
             {post.image && (
-  <img src={`./images/${post.image}`} alt="Post Image" />
+  <img src={`/images/${post.image}`} alt="Post Image" />
 )}
 
             <CommentList comments={post.comments} />
