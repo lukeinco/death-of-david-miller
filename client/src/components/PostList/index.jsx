@@ -2,7 +2,7 @@ import CommentList from '../CommentList'
 import CommentForm from '../CommentForm'
 
 const PostList = ({ posts, title }) => {
-const imageurl = posts.image
+
   return (
     <div>
       <h2>{title}</h2>
